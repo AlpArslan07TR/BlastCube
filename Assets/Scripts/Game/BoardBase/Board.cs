@@ -15,6 +15,9 @@ public class Board : MonoBehaviour
         Rows = row;
         Cols = col;
         Cells=new Cell[Rows, Cols];
+
+        CreateCells();
+        PrepareCells();
     }
 
     private void CreateCells()
@@ -29,4 +32,16 @@ public class Board : MonoBehaviour
             }
         }
     }
+
+    private void PrepareCells()
+    {
+        for (int x = 0;x < Rows; x++)
+        {
+            for( int y = 0;y < Cols; y++)
+            {
+                Cells[x, y].Prepare(x, y);
+            }
+        }
+    }
+
 }
