@@ -6,6 +6,9 @@ public class Cell : MonoBehaviour,ITouchable
 {
     [SerializeField] private TextMeshPro labelText;
     [Inject] private Board _board;
+
+
+    public bool IsFillingCell { get; private set; }
     public int X {  get; private set; }
     public int Y { get; private set; }
     public ListPool<Cell> Neighbors { get; private set; } = new();
@@ -42,8 +45,21 @@ public class Cell : MonoBehaviour,ITouchable
         X = x;
         Y = y;
 
+        IsFillingCell = Y == _board.Cols - 1;
         transform.localPosition = new Vector3(x, y);
+
         SetLabel();
+    }
+
+    public bool HasItem()
+    {
+        return Item!=null;
+    }
+
+    public bool IsFalling()
+    {
+        //todo:update here
+        return false;
     }
 
     private void SetLabel()
