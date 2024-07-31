@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -8,6 +7,7 @@ using Zenject;
 public class TouchManager : MonoBehaviour
 {
     [SerializeField] private float firstTapDelayDuration;
+
     [Inject] private SignalBus _signalBus;
 
     private CancellationTokenSource _cts;
@@ -48,14 +48,12 @@ public class TouchManager : MonoBehaviour
             {
                 if (hit.gameObject.TryGetComponent(out ITouchable selectedElement))
                 {
-                    //TouchEvents.OnElementTapped?.Invoke(selectedElement);
-                    _signalBus.Fire(new OnElementTapped(selectedElement));
+                    _signalBus.Fire(new OnElementTappedSignal(selectedElement));
                 }
             }
             else
             {
-                //TouchEvents.OnEmptyTapped?.Invoke();
-                _signalBus.Fire<OnEmptyTapped>();
+                _signalBus.Fire<OnEmptyTappedSignal>();
             }
         }
     }
@@ -81,17 +79,6 @@ public class TouchManager : MonoBehaviour
     }
 }
 
-public struct OnElementTapped
-{
-    public readonly ITouchable Touchable;
-
-    public OnElementTapped(ITouchable touchable)
-    {
-        Touchable = touchable;
-    }
-}
-
-public struct OnEmptyTapped { }
 public struct OnElementTappedSignal
 {
     public readonly ITouchable Touchable;

@@ -10,5 +10,8 @@ public class GamePlayInstaller : ScriptableObjectInstaller<GamePlayInstaller>
     {
         Container.BindFactory<Cell,Cell.CellFactory>().FromComponentInNewPrefab(cellPrefab).AsSingle();
         Container.BindFactory<ItemBase, ItemBase.ItemBaseFactory>().FromComponentInNewPrefab(itemPrefab).AsSingle();
+
+        Container.DeclareSignal<OnElementTappedSignal>();
+        Container.DeclareSignal<OnEmptyTappedSignal>();
     }
 }
