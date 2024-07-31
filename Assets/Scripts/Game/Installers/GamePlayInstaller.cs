@@ -8,6 +8,7 @@ public class GamePlayInstaller : ScriptableObjectInstaller<GamePlayInstaller>
     [SerializeField] private ItemBase itemPrefab;
     public override void InstallBindings()
     {
+        SignalBusInstaller.Install(Container);
         Container.BindFactory<Cell,Cell.CellFactory>().FromComponentInNewPrefab(cellPrefab).AsSingle();
         Container.BindFactory<ItemBase, ItemBase.ItemBaseFactory>().FromComponentInNewPrefab(itemPrefab).AsSingle();
 
