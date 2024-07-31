@@ -22,13 +22,13 @@ public class Cell : MonoBehaviour,ITouchable
             var oldItem = _item;
             _item = value;
 
-            if(oldItem !=null && Equals(oldItem.Cell, this))
+            if(oldItem !=null && Equals(oldItem.cell, this))
             {
-                oldItem.Cell = null;
+                oldItem.cell = null;
             }
             if(value != null)
             {
-                value.Cell = this;
+                value.cell = this;
             }
         }
     }
