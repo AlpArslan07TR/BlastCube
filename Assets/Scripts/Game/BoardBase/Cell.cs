@@ -1,4 +1,7 @@
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using TMPro;
+
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +12,10 @@ public class Cell : MonoBehaviour,ITouchable
 
 
     public bool IsFillingCell { get; private set; }
+    public List<Cell> Neigbours { get; private set; }
     public int X {  get; private set; }
     public int Y { get; private set; }
-    public ListPool<Cell> Neighbors { get; private set; } = new();
+   
 
 
     public Item Item
@@ -49,6 +53,7 @@ public class Cell : MonoBehaviour,ITouchable
         transform.localPosition = new Vector3(x, y);
 
         SetLabel();
+        UpdateNeighbors();
     }
 
     public bool HasItem()
@@ -60,6 +65,20 @@ public class Cell : MonoBehaviour,ITouchable
     {
         //todo:update here
         return false;
+    }
+
+    private void UpdateNeighbors()
+    {
+        var up = _board.GetNeighborWithDirection(this,Directions.Up);
+        var down = _board.GetNeighborWithDirection(this, Directions.Down);
+        var left = _board.GetNeighborWithDirection(this, Directions.Left);
+        var right = _board.GetNeighborWithDirection(this, Directions.Right);
+
+        if (up != null) Neigbours.Add(up);
+        if (down != null) Neigbours.Add(down);
+        if (left != null) Neigbours.Add(left);
+        if (right != null) Neigbours.Add(right);
+
     }
 
     private void SetLabel()
