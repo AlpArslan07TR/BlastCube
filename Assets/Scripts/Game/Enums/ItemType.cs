@@ -7,6 +7,7 @@ public enum ItemType
     GreenCube,
     YellowCube,
     BlackCube,
+    BlueCube,
     RedCube,
     PinkCube,
     PurpleCube,
