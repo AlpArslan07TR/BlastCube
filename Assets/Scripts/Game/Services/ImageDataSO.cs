@@ -8,63 +8,63 @@ namespace Game.Services
     public class ImageDataSO : MonoBehaviour
     {
         [Header("Red Cubes")]
-        [SerializeField] private Sprite redCube;
-        [SerializeField] private Sprite redCubeRocket;
-        [SerializeField] private Sprite redCubeBomb;
-        [SerializeField] private Sprite redCubeDisco;
+        public Sprite redCube;
+        public Sprite redCubeRocket;
+        public Sprite redCubeBomb;
+        public Sprite redCubeDisco;
 
         [Space,Header("Green Cubes")]
-        [SerializeField] private Sprite GreenCube;
-        [SerializeField] private Sprite GreenCubeRocket;
-        [SerializeField] private Sprite GreenCubeBomb;
-        [SerializeField] private Sprite GreenCubeDisco;
+        public Sprite GreenCube;
+        public Sprite GreenCubeRocket;
+        public Sprite GreenCubeBomb;
+        public Sprite GreenCubeDisco;
         
         [Space, Header("Blue Cubes")]
-        [SerializeField] private Sprite BlueCube;
-        [SerializeField] private Sprite BlueCubeRocket;
-        [SerializeField] private Sprite BlueCubeBomb;
-        [SerializeField] private Sprite BlueCubeDisco;
+        public Sprite BlueCube;
+        public Sprite BlueCubeRocket;
+        public Sprite BlueCubeBomb;
+        public Sprite BlueCubeDisco;
 
         [Space, Header("Yellow Cubes")]
-        [SerializeField] private Sprite YellowCube;
-        [SerializeField] private Sprite YellowCubeRocket;
-        [SerializeField] private Sprite YellowCubeBomb;
-        [SerializeField] private Sprite YellowCubeDisco;
+        public Sprite YellowCube;
+        public Sprite YellowCubeRocket;
+        public Sprite YellowCubeBomb;
+        public Sprite YellowCubeDisco;
 
         [Space, Header("Pink Cubes")]
-        [SerializeField] private Sprite PinkCube;
-        [SerializeField] private Sprite PinkCubeRocket;
-        [SerializeField] private Sprite PinkCubeBomb;
-        [SerializeField] private Sprite PinkCubeDisco;
+        public Sprite PinkCube;
+        public Sprite PinkCubeRocket;
+        public Sprite PinkCubeBomb;
+        public Sprite PinkCubeDisco;
 
         [Space, Header("Purple Cubes")]
-        [SerializeField] private Sprite PurpleCube;
-        [SerializeField] private Sprite PurpleCubeRocket;
-        [SerializeField] private Sprite PurpleCubeBomb;
-        [SerializeField] private Sprite PurpleCubeDisco;
+        public Sprite PurpleCube;
+        public Sprite PurpleCubeRocket;
+        public Sprite PurpleCubeBomb;
+        public Sprite PurpleCubeDisco;
 
         [Space, Header("Balloons")]
-        [SerializeField] private Sprite balloon;
-        [SerializeField] private Sprite balloonGreen;
-        [SerializeField] private Sprite balloonRed;
-        [SerializeField] private Sprite balloonBlue;
-        [SerializeField] private Sprite balloonYellow;
-        [SerializeField] private Sprite balloonPink;
-        [SerializeField] private Sprite balloonPurple;
+        public Sprite balloon;
+        public Sprite balloonGreen;
+        public Sprite balloonRed;
+        public Sprite balloonBlue;
+        public Sprite balloonYellow;
+        public Sprite balloonPink;
+        public Sprite balloonPurple;
 
         [Space, Header("Creates")]
-        [SerializeField] private Sprite createLayer1;
-        [SerializeField] private Sprite createLayer2;
+        public Sprite createLayer1;
+        public Sprite createLayer2;
 
         [Space, Header("Rockets")]
-        [SerializeField] private Sprite rocketVertical;
-        [SerializeField] private Sprite rocketHorizontal;
+        public Sprite rocketVertical;
+        public Sprite rocketHorizontal;
 
         [Space, Header("Bomb")]
-        [SerializeField] private Sprite bomb;
+        public Sprite bomb;
 
         [Space, Header("Disco")]
-        [SerializeField] private Sprite disco;
+        public Sprite disco;
 
     }
 }
