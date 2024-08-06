@@ -11,8 +11,8 @@ public class GamePlayInstaller : ScriptableObjectInstaller<GamePlayInstaller>
         SignalBusInstaller.Install(Container);
         Container.Bind<Board>().FromComponentInHierarchy().AsSingle();
         Container.BindFactory<Cell,Cell.CellFactory>().FromComponentInNewPrefab(cellPrefab).AsSingle();
-        Container.BindFactory<ItemBase, ItemBase.ItemBaseFactory>().FromComponentInNewPrefab(itemPrefab).AsSingle();
-
+        Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemPrefab).AsSingle();
+        Container.BindFactory<Item, Item.Factory>().FromComponentInNewPrefab(itemPrefab).AsSingle();
         Container.DeclareSignal<OnElementTappedSignal>();
         Container.DeclareSignal<OnEmptyTappedSignal>();
     }

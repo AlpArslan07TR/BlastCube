@@ -5,7 +5,7 @@ using Zenject;
 
 public class ItemBase : MonoBehaviour
 {
-    public class ItemBaseFactory : PlaceholderFactory<ItemBase> { }
+    public class Factory : PlaceholderFactory<ItemBase> { }
     
 
     
