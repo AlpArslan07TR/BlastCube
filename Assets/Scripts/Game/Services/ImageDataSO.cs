@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Services
 {
     [CreateAssetMenu(fileName = "ImageData", menuName = "Scriptable Objects/ImageData")]
-    public class ImageDataSO : MonoBehaviour
+    public class ImageDataSO : ScriptableObject
     {
         [Header("Red Cubes")]
         public Sprite redCube;
