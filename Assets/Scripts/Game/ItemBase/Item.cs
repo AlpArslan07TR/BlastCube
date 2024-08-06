@@ -70,6 +70,10 @@ public class Item : MonoBehaviour
     {
 
     }
+    protected virtual void ChangeSprite(Sprite newSprite)
+    {
+        _spriteRenderer.sprite = newSprite;
+    }
 
     protected void Init(ItemBase ýtemBase,Sprite sprite)
     {
