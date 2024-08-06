@@ -1,18 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MatchHelpers : MonoBehaviour
+public static class MatchHelpers
 {
-    // Start is called before the first frame update
-    void Start()
+    public const int MinMatchCount = 2;
+
+    public static bool CanMatch(int amount)
     {
-        
+        return amount >= MinMatchCount;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static bool IsRocketMatch(int amount)
     {
-        
+        return amount is 5 or 6 or 7;
+    }
+
+    public static bool IsBombMatch(int amount)
+    {
+        return amount is 8 or 9;
+    }
+
+    public static bool IsDiscoMatch(int amount)
+    {
+        return amount > 9;
+    }
+
+    public static bool IsMinSpecialMatch(int amount)
+    {
+        return amount >= 5;
     }
 }
