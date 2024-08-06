@@ -12,7 +12,7 @@ public class Cell : MonoBehaviour,ITouchable
 
 
     public bool IsFillingCell { get; private set; }
-    public List<Cell> Neigbours { get; private set; }
+    public List<Cell> Neigbours { get; private set; } = new();
     public int X {  get; private set; }
     public int Y { get; private set; }
    
