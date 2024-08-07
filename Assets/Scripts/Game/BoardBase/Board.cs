@@ -1,5 +1,5 @@
 using System;
-
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +8,7 @@ public class Board : MonoBehaviour
     [SerializeField] private Transform cellParent;
     [Inject] private Cell.CellFactory _cellFactory;
     [Inject] private SignalBus _signalBus;
+    [Inject] private Borders _borders;
     public int Rows { get; private set; }
     public int Cols { get; private set; }
     public Cell[,] Cells { get; private set; }
@@ -29,6 +30,8 @@ public class Board : MonoBehaviour
 
         CreateCells();
         PrepareCells();
+
+        _borders.Prepare(Rows, Cols, Cells.Cast<Cell>().ToList());
     }
     public Cell GetNeighborWithDirection(Cell cell, Directions direction)
     {

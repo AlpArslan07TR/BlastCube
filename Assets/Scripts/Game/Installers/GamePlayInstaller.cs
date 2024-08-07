@@ -17,6 +17,8 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
         Container.Bind<ImageLibService>().FromComponentInHierarchy()
             .AsSingle();
 
+        Container.Bind<Borders>().FromComponentInHierarchy().AsSingle();
+
         Container.BindFactory<Cell, Cell.CellFactory>()
             .FromComponentInNewPrefab(cellPrefab)
             .AsSingle();
