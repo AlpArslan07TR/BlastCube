@@ -18,14 +18,12 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
             .AsSingle();
 
         Container.Bind<Borders>().FromComponentInHierarchy().AsSingle();
-
+        Container.Bind<ItemFactory>().FromComponentInHierarchy().AsSingle();
         Container.BindFactory<Cell, Cell.CellFactory>()
             .FromComponentInNewPrefab(cellPrefab)
             .AsSingle();
 
-        Container.BindFactory<ItemBase, ItemBase.Factory>()
-            .FromComponentInNewPrefab(itemBasePrefab)
-            .AsSingle();
+        Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemBasePrefab).AsSingle();
 
         
 

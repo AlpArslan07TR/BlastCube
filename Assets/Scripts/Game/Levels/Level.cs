@@ -1,3 +1,4 @@
+using ModestTree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,9 @@ public enum LevelName
 }
 public class Level : MonoBehaviour
 {
+    [Inject] private ItemFactory _itemFactory;
     [SerializeField] private LevelName levelName;
+    [SerializeField] private Transform itemParent;
     private Board _board;
     private LevelData _currentLevelData;
 
@@ -41,7 +44,14 @@ public class Level : MonoBehaviour
         {
             for(int y = 0; y < _currentLevelData.GridData.GetLength(1); y++)
             {
+                var cell= _board.Cells[x,y];
+                var itemType = _currentLevelData.GridData[x,y];
+                var item = _itemFactory.Create(itemType,itemParent);
 
+                if (item == null) continue;
+
+                cell.Item = item;
+                item.transform.position = cell.transform.position;
             }
         }
     }
