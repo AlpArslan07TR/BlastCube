@@ -1,4 +1,5 @@
 
+using ModestTree;
 using System;
 using UnityEngine;
 using Zenject;
@@ -7,9 +8,13 @@ public class ItemFactory : MonoBehaviour
 {
     
     [Inject] private ItemBase.Factory _itemBaseFactory;
+    [Inject] private DiContainer _diContainer;
 
     public Item Create(ItemType itemType, Transform parent, int layerCount = 2, ItemType itemTypeCliked = ItemType.None)
     {
+        Assert.IsNotNull(parent, "parent is null");
+        Assert.IsNotNull(_itemBaseFactory, "_itemBaseFactory is null");
+
         var itemBase = _itemBaseFactory.Create();
         Item item = null;
         switch (itemType)
@@ -62,12 +67,14 @@ public class ItemFactory : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
         }
 
-        return null; //todo: return item
+        return item; //todo: return item
     }
 
     public Item CreateCubeItem(ItemBase itemBase,MatchType matchType,ItemType itemType)
     {
         var cubeItem = itemBase.gameObject.AddComponent<CubeItem>();
+        //_diContainer.InjectGameObject(cubeItem.gameObject);
+        _diContainer.Inject(cubeItem);
         cubeItem.Prepare(itemBase, matchType, itemType);
 
         return cubeItem;

@@ -16,16 +16,18 @@ public class Level : MonoBehaviour
     [SerializeField] private Transform itemParent;
     private Board _board;
     private LevelData _currentLevelData;
-
+    private void Start()
+    {
+        GetLevelData();
+        PrepareBoard();
+        PrepareLevel();
+    }
     [Inject]
-
     public void Initialize(Board board)
     {
         _board = board;
 
-        GetLevelData();
-        PrepareBoard();
-        PrepareLevel();
+       
     }
 
     void GetLevelData()
@@ -40,6 +42,7 @@ public class Level : MonoBehaviour
 
     private void PrepareLevel()
     {
+        Assert.IsNotNull(_itemFactory);
         for(int x=0;x<_currentLevelData.GridData.GetLength(0);x++)
         {
             for(int y = 0; y < _currentLevelData.GridData.GetLength(1); y++)
