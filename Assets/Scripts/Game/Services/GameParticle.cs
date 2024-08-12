@@ -36,7 +36,9 @@ public class GameParticle : MonoBehaviour
         try
         {
             await UniTask.WaitWhile(IsPlaying,cancellationToken: _cts.Token);
-            //todo: poola geri koy
+
+            _particleService.DeSpawn(_id, this);
+            
         }
         catch (OperationCanceledException) { }
     }
