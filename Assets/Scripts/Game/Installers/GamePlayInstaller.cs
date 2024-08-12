@@ -4,8 +4,11 @@ using Zenject;
 [CreateAssetMenu(fileName = "GameplayInstaller", menuName = "Installers/GameplayInstaller")]
 public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
 {
+    [Header("Prefabs")]
     [SerializeField] private Cell cellPrefab;
     [SerializeField] private ItemBase itemBasePrefab;
+    [Space]
+    [SerializeField] private ItemStatsSO ItemStatsSO;
 
     public override void InstallBindings()
     {
@@ -24,7 +27,7 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
             .AsSingle();
 
         Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemBasePrefab).AsSingle();
-
+        Container.Bind<ItemStatsSO>().FromInstance(ItemStatsSO).AsSingle();
         
 
         Container.DeclareSignal<OnElementTappedSignal>();
