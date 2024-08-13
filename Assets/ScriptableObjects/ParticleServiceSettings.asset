@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbec14ce1d1ce3c4f9bea3967b4305b3, type: 3}
   m_Name: ParticleServiceSettings
   m_EditorClassIdentifier: 
-  particles: []
+  particles:
+  - id: 
+    initialSize: 0
+    maxSize: 0
+    particle: {fileID: 0}
