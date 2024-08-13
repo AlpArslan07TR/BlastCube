@@ -28,6 +28,7 @@ public class Item : MonoBehaviour
     protected ItemType ItemType;
     protected bool CanFall = true;
 
+    private FallAnimation _fallAnimation;
     private const int BaseSortingOrder = 10;
     private SpriteRenderer _spriteRenderer;
     private ParticleSystem _comboParticle;
@@ -70,15 +71,22 @@ public class Item : MonoBehaviour
     {
 
     }
+    public bool IsFalling()
+    {
+        return _fallAnimation.IsFalling;
+    }
+
     protected virtual void ChangeSprite(Sprite newSprite)
     {
         _spriteRenderer.sprite = newSprite;
     }
 
-    protected void Init(ItemBase ýtemBase,Sprite sprite)
+    protected void Prepare(ItemBase itemBase,Sprite sprite)
     {
         _spriteRenderer=AddSprite(sprite);
-        //todo:add fall anim
+        _fallAnimation = itemBase.FallAnimation;
+        _fallAnimation.item = this;
+        
     }
 
     public void SetDefaultItemSprite()
