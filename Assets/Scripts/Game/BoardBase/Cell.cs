@@ -10,6 +10,8 @@ public class Cell : MonoBehaviour,ITouchable
     [SerializeField] private TextMeshPro labelText;
     [Inject] private Board _board;
 
+    [HideInInspector] public Cell FirstCellBelow;
+
 
     public bool IsFillingCell { get; private set; }
     public List<Cell> Neigbours { get; private set; } = new();
@@ -67,6 +69,16 @@ public class Cell : MonoBehaviour,ITouchable
         return false;
     }
 
+    public Cell GetFallTarget()
+    {
+        var targetCell = this;
+        while (targetCell.FirstCellBelow != null && !targetCell.FirstCellBelow.HasItem())
+        {
+            targetCell = targetCell.FirstCellBelow;
+        }
+        return targetCell;
+    }
+
     private void UpdateNeighbors()
     {
         var up = _board.GetNeighborWithDirection(this,Directions.Up);
@@ -76,6 +88,10 @@ public class Cell : MonoBehaviour,ITouchable
 
         if (up != null) Neigbours.Add(up);
         if (down != null) Neigbours.Add(down);
+        {
+            Neigbours.Add(down);
+            FirstCellBelow = down;
+        }       
         if (left != null) Neigbours.Add(left);
         if (right != null) Neigbours.Add(right);
 

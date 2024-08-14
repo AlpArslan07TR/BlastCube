@@ -26,9 +26,9 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
             .FromComponentInNewPrefab(cellPrefab)
             .AsSingle();
 
-        Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemBasePrefab).AsSingle();
+        Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemBasePrefab).UnderTransformGroup("--Game/Level/ItemParent").AsSingle();
         Container.Bind<ItemStatsSO>().FromInstance(ItemStatsSO).AsSingle();
-        
+        Container.Bind<FallAndFillManager>().FromComponentsInHierarchy().AsSingle();
 
         Container.DeclareSignal<OnElementTappedSignal>();
         Container.DeclareSignal<OnEmptyTappedSignal>();

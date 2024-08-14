@@ -1,54 +1,56 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Zenject;
 
-public class HintManager : MonoBehaviour
+namespace Game.Services
 {
-    [Inject] private Board _board;
-    [Inject] private ParticleService _particleService;
-    private MatchFinder _matchFinder;
-
-
-    private void Start()
+    public class HintManager : MonoBehaviour
     {
-        _matchFinder = new MatchFinder(_board.Rows, _board.Cols);
-    }
+        [Inject] private Board _board;
+        [Inject] private ParticleService _particleService;
+        private MatchFinder _matchFinder;
 
-    private void Update()
-    {
-        CheckForHint();
-    }
-
-    private void CheckForHint()
-    {
-        for(int x=0;x<_board.Rows;x++)
+        private void Start()
         {
-            for(int y=0;y<_board.Cols;y++)
+            Assert.IsNotNull(_board);
+            _matchFinder = new MatchFinder(_board.Rows, _board.Cols);
+        }
+
+        private void Update()
+        {
+            CheckForHint();
+        }
+
+        private void CheckForHint()
+        {
+            for (int x = 0; x < _board.Rows; x++)
             {
-                if (!_board.Cells[x, y].HasItem()) continue;
+                for (int y = 0; y < _board.Cols; y++)
+                {
+                    if (!_board.Cells[x, y].HasItem()) continue;
 
-                var item = _board.Cells[x, y].Item;
-                var matchingCells = _matchFinder.FindMatches(_board.Cells[x, y],item.GetMatchType());
+                    var item = _board.Cells[x, y].Item;
+                    var matchingCells = _matchFinder.FindMatches(_board.Cells[x, y], item.GetMatchType());
 
-                SetHintSprites(matchingCells.Count,x,y);
-
+                    SetHintSprites(matchingCells.Count, x, y);
+                    //todo: hint particle
+                }
             }
         }
-    }
 
-    private void SetHintSprites(int matchCount, int x, int y)
-    {
-        switch (matchCount)
+        private void SetHintSprites(int matchCount, int x, int y)
         {
-            case >= MatchHelpers.MinSpecialMatchCount:
-                _board.Cells[x, y].Item.SetHint(matchCount);
-                break;
+            switch (matchCount)
+            {
+                case >= MatchHelpers.MinSpecialMatchCount:
+                    _board.Cells[x, y].Item.SetHint(matchCount);
+                    break;
 
-            case < MatchHelpers.MinSpecialMatchCount:
-                _board.Cells[x, y].Item.SetDefaultItemSprite();
-                break;
+                case < MatchHelpers.MinSpecialMatchCount:
+                    _board.Cells[x, y].Item.SetDefaultItemSprite();
+                    break;
+            }
         }
     }
 }

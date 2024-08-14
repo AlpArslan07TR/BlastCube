@@ -12,8 +12,9 @@ public enum LevelName
 public class Level : MonoBehaviour
 {
     [Inject] private ItemFactory _itemFactory;
+    [Inject] private FallAndFillManager _fallAndFillManager;
     [SerializeField] private LevelName levelName;
-    [SerializeField] private Transform itemParent;
+    
     private Board _board;
     private LevelData _currentLevelData;
     private void Start()
@@ -21,6 +22,7 @@ public class Level : MonoBehaviour
         GetLevelData();
         PrepareBoard();
         PrepareLevel();
+        StartFalls();
     }
     [Inject]
     public void Initialize(Board board)
@@ -49,7 +51,7 @@ public class Level : MonoBehaviour
             {
                 var cell= _board.Cells[x,y];
                 var itemType = _currentLevelData.GridData[x,y];
-                var item = _itemFactory.Create(itemType,itemParent);
+                var item = _itemFactory.Create(itemType);
 
                 if (item == null) continue;
 
@@ -57,6 +59,12 @@ public class Level : MonoBehaviour
                 item.transform.position = cell.transform.position;
             }
         }
+    }
+
+    private void StartFalls()
+    {
+        _fallAndFillManager.Prepare(_currentLevelData);
+        _fallAndFillManager.StartFall();
     }
 
     
