@@ -90,6 +90,15 @@ public class Board : MonoBehaviour
         return Cells[x, y];
     }
 
+    public bool IsInBoardX(int x)
+    {
+        return x < Rows && x >= 0;
+    }
+    public bool IsInBoardY(int y)
+    {
+        return y < Cols && y >= 0;
+    }
+
     private void CellTapped(OnElementTappedSignal signal)
     {
         var cell = signal.Touchable.gameObject.GetComponent<Cell>();

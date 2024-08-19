@@ -58,8 +58,10 @@ public class ItemFactory : MonoBehaviour
             case ItemType.Bomb:
                 break;
             case ItemType.VerticalRocket:
+                item = CreateRocketItem(itemBase, itemType);
                 break;
             case ItemType.HorizontalRocket:
+                item = CreateRocketItem(itemBase, itemType);
                 break;
             case ItemType.Disco:
                 break;
@@ -68,6 +70,15 @@ public class ItemFactory : MonoBehaviour
         }
 
         return item; //todo: return item
+    }
+
+    private Item CreateRocketItem(ItemBase itemBase, ItemType itemType)
+    {
+        var rocketItem=itemBase.gameObject.AddComponent<RocketItem>();
+        _diContainer.Inject(rocketItem);
+        rocketItem.PrepareRocketItem(itemBase,itemType);
+
+        return rocketItem;
     }
 
     public Item CreateCubeItem(ItemBase itemBase,MatchType matchType,ItemType itemType)

@@ -7,7 +7,7 @@ public abstract class SpecialItem : Item
 {
     [Inject] private ParticleService _particleService;
     private GameParticle _hintParticle;
-    private const MatchType matchType = MatchType.SpecialType;
+    
 
     public override void SetHint(int groupCount)
     {
@@ -29,7 +29,7 @@ public abstract class SpecialItem : Item
 
     public override MatchType GetMatchType()
     {
-        return matchType;
+        return MatchType.SpecialType;
     }
 
     public abstract override SpecialType GetSpecialType();
