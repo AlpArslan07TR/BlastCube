@@ -80,7 +80,7 @@ public class FallAndFillManager : MonoBehaviour
             var targetCellBelow = cell.GetFallTarget().FirstCellBelow;
             if(targetCellBelow != null && !targetCellBelow.HasItem())
             {
-                offsetY=targetCellBelow.transform.position.y+1;
+                offsetY=targetCellBelow.Item.transform.position.y+1;
             }
             
             var position=cell.transform.position;

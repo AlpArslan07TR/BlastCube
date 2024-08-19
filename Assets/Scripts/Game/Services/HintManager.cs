@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
 
-namespace Game.Services
-{
+
+
     public class HintManager : MonoBehaviour
     {
         [Inject] private Board _board;
@@ -53,4 +53,3 @@ namespace Game.Services
             }
         }
     }
-}

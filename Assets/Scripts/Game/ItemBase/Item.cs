@@ -54,7 +54,7 @@ public class Item : MonoBehaviour
     {
         if(!CanFall) return;
 
-        _fallAnimation.FallTo(_cell.GetFallTarget());
+        _fallAnimation.FallTo(cell.GetFallTarget());
     }
 
     public void RemoveItem()

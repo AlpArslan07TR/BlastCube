@@ -1,3 +1,4 @@
+using ModestTree;
 using UnityEngine;
 using Zenject;
 
@@ -18,13 +19,15 @@ public class FallAnimation : MonoBehaviour
 
     public void FallTo(Cell targetCell)
     {
-        if (targetCell != null && targetCell.Y >= TargetCell.Y) return;
+        Assert.IsNotNull(targetCell);
+        if (TargetCell != null && targetCell.Y >= TargetCell.Y)
         {
-            TargetCell = targetCell;
-            item.cell = targetCell;
-            _targetPos = TargetCell.transform.position;
-            IsFalling = true;
+            return;
         }
+        TargetCell = targetCell;
+        item.cell = targetCell;
+        _targetPos = TargetCell.transform.position;
+        IsFalling = true;
     }
 
     private void Update()

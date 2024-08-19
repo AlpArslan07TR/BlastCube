@@ -39,6 +39,8 @@ public class Level : MonoBehaviour
 
     private void PrepareBoard()
     {
+        Assert.IsNotNull(_board);
+        Assert.IsNotNull(_currentLevelData);
         _board.Prepare(_currentLevelData.RowCount, _currentLevelData.ColCount);
     }
 

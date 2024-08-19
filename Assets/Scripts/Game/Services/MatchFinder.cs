@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
-namespace Game.Services
-{
+
+
     public class MatchFinder
     {
         private bool[,] _visitedCells;
@@ -27,7 +27,7 @@ namespace Game.Services
             var y = cell.Y;
 
             if (_visitedCells[x, y]) return;
-            if (!IsVisited(cell, matchType)) return;
+        if (!IsVisited(cell, matchType)) return;
 
             _visitedCells[x, y] = true;
             resultCells.Add(cell);
@@ -59,4 +59,3 @@ namespace Game.Services
             }
         }
     }
-}
