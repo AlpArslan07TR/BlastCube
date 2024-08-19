@@ -11,6 +11,7 @@ public class Board : MonoBehaviour
     [Inject] private Cell.CellFactory _cellFactory;
     [Inject] private SignalBus _signalBus;
     [Inject] private Borders _borders;
+    [Inject] private ItemFactory _itemFactory;
     public int Rows { get; private set; }
     public int Cols { get; private set; }
     public Cell[,] Cells { get; private set; }
@@ -108,7 +109,31 @@ public class Board : MonoBehaviour
             return;
         }
         ExploseMatchingCells(cell);
-        //TryCombineMatchingCellsToSpecialItem(cell,matches,clickedType);
+        TryCombineMatchingCellsToSpecialItem(cell,matches,clickedType);
+    }
+
+    private void TryCombineMatchingCellsToSpecialItem(Cell cell, List<Cell> matches, ItemType clickedType)
+    {
+        if (!MatchHelpers.CanMatch(matches.Count)) return;
+
+        if (MatchHelpers.IsRocketMatch(matches.Count))
+        {
+            var rnd = UnityEngine.Random.Range(0, 2);
+            var item = _itemFactory.Create(rnd==0?ItemType.HorizontalRocket:ItemType.VerticalRocket);
+            cell.Item = item;
+            item.transform.position=cell.transform.position;
+        }else if (MatchHelpers.IsBombMatch(matches.Count))
+        {
+            var item=_itemFactory.Create(ItemType.Bomb);
+            cell.Item=item;
+            item.transform.position = cell.transform.position;
+
+        }else if (MatchHelpers.IsDiscoMatch(matches.Count))
+        {
+            var item= _itemFactory.Create(ItemType.Disco,itemTypeCliked:clickedType);
+            cell.Item=item;
+            item.transform.position= cell.transform.position;
+        }
     }
 
     private void ExploseMatchingCells(Cell cell)
