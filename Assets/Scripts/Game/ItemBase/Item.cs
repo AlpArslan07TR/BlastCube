@@ -87,7 +87,7 @@ public class Item : MonoBehaviour
     {
         _spriteRenderer=AddSprite(sprite);
         _fallAnimation = itemBase.FallAnimation;
-        _fallAnimation.item = this;
+        _fallAnimation.Item = this;
         
     }
 

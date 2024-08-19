@@ -10,7 +10,7 @@ public class ParticleServiceInstaller : ScriptableObjectInstaller<ParticleServic
 
     public override void InstallBindings()
     {
-        Container.Bind<ParticleServiceSettings>().FromInstance(settings).WhenInjectedInto(typeof(ParticleServiceSettings));
+        Container.Bind<ParticleServiceSettings>().FromInstance(settings);
         Container.BindInterfacesAndSelfTo<ParticleService>().FromNew().AsSingle();
 
         foreach(var particleData in settings.particles)

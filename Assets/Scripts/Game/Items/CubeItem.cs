@@ -5,6 +5,8 @@ using Zenject;
 public class CubeItem : Item
 {
     [Inject] ImageLibService _imageLibService;
+    [Inject] private ParticleService _particleService;
+    [Inject] private ColorListSO _colorListSO;
     private MatchType _matchType;
 
     public void Prepare(ItemBase itemBase, MatchType matchType, ItemType itemType)
@@ -151,7 +153,41 @@ public class CubeItem : Item
 
     public override void TryExecute()
     {
+        var fx = _particleService.Spawn("cubeParticle", transform.position);
+        ChangeColor();
+
         base.TryExecute();
+
+        return;
+        void ChangeColor()
+        {
+            var main = fx.Particle.main;
+            switch (_matchType)
+            {
+                case MatchType.Green:
+                    main.startColor = _colorListSO.green;
+                    break;
+                case MatchType.Yellow:
+                    main.startColor = _colorListSO.yellow;
+                    break;
+                case MatchType.Blue:
+                    main.startColor = _colorListSO.blue;
+                    break;
+                case MatchType.Red:
+                    main.startColor = _colorListSO.red;
+                    break;
+                case MatchType.Pink:
+                    main.startColor = _colorListSO.pink;
+                    break;
+                case MatchType.Purple:
+                    main.startColor = _colorListSO.purple;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            fx.Particle.Play();
+        }
     }
 
     protected override Sprite GetDefaultItemSprite()

@@ -1,3 +1,5 @@
+
+
 using UnityEngine;
 using Zenject;
 
@@ -7,8 +9,9 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
     [Header("Prefabs")]
     [SerializeField] private Cell cellPrefab;
     [SerializeField] private ItemBase itemBasePrefab;
-    [Space]
-    [SerializeField] private ItemStatsSO ItemStatsSO;
+    [Space, Header("Scriptable Objects")]
+    [SerializeField] private ItemStatsSO itemStatsSO;
+    [SerializeField] private ColorListSO colorListSO;
 
     public override void InstallBindings()
     {
@@ -17,18 +20,32 @@ public class GameplayInstaller : ScriptableObjectInstaller<GameplayInstaller>
         Container.Bind<Board>().FromComponentInHierarchy()
             .AsSingle();
 
+        Container.Bind<Borders>().FromComponentInHierarchy()
+            .AsSingle();
+
+        Container.Bind<ItemFactory>().FromComponentInHierarchy()
+            .AsSingle();
+
         Container.Bind<ImageLibService>().FromComponentInHierarchy()
             .AsSingle();
 
-        Container.Bind<Borders>().FromComponentInHierarchy().AsSingle();
-        Container.Bind<ItemFactory>().FromComponentInHierarchy().AsSingle();
         Container.BindFactory<Cell, Cell.CellFactory>()
             .FromComponentInNewPrefab(cellPrefab)
             .AsSingle();
 
-        Container.BindFactory<ItemBase, ItemBase.Factory>().FromComponentInNewPrefab(itemBasePrefab).UnderTransformGroup("--Game/Level/ItemParent").AsSingle();
-        Container.Bind<ItemStatsSO>().FromInstance(ItemStatsSO).AsSingle();
-        Container.Bind<FallAndFillManager>().FromComponentsInHierarchy().AsSingle();
+        Container.BindFactory<ItemBase, ItemBase.Factory>()
+            .FromComponentInNewPrefab(itemBasePrefab)
+            .UnderTransformGroup("---Game---/Levels/ItemParent")
+            .AsSingle();
+
+        Container.Bind<FallAndFillManager>()
+            .FromComponentsInHierarchy()
+            .AsSingle();
+
+        Container.Bind<ItemStatsSO>()
+            .FromInstance(itemStatsSO)
+            .AsSingle();
+        Container.Bind<ColorListSO>().FromInstance(colorListSO).AsSingle();
 
         Container.DeclareSignal<OnElementTappedSignal>();
         Container.DeclareSignal<OnEmptyTappedSignal>();

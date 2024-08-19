@@ -18,6 +18,7 @@ public class GameParticle : MonoBehaviour
 
     private void Awake()
     {
+        _cts = new CancellationTokenSource();
         Particle=gameObject.GetComponent<ParticleSystem>();
     }
 
