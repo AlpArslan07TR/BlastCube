@@ -18,3 +18,8 @@ MonoBehaviour:
     maxSize: 128
     particle: {fileID: 8197467614470778854, guid: 56274e391ba74fc4589c05311d67065e,
       type: 3}
+  - id: ComboParticle
+    initialSize: 32
+    maxSize: 128
+    particle: {fileID: 8197467614470778854, guid: 56274e391ba74fc4589c05311d67065e,
+      type: 3}
