@@ -9,6 +9,7 @@ public static class LevelDataFactory
         LevelData levelData = levelName switch
         {
             LevelName.Level1 => new Level_1(),
+            LevelName.Level2 => new Level_2(),
             _ => new Level_1()
         };
 

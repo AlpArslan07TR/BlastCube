@@ -65,12 +65,22 @@ public class ItemFactory : MonoBehaviour
                 item = CreateRocketItem(itemBase, itemType);
                 break;
             case ItemType.Disco:
+                item=CreateDiscoItem(itemBase, itemType,itemTypeCliked);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
         }
 
-        return item; //todo: return item
+        return item; 
+    }
+
+    private Item CreateDiscoItem(ItemBase itemBase, ItemType itemType, ItemType itemTypeCliked)
+    {
+        var discoItem = itemBase.gameObject.AddComponent<DiscoItem>();
+        _diContainer.Inject(discoItem);
+        discoItem.PrepareDiscoItem(itemBase, itemType, itemTypeCliked);
+
+        return discoItem;
     }
 
     private Item CreateBombItem(ItemBase itemBase, ItemType itemType)
