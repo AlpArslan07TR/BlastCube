@@ -8,7 +8,8 @@ using Zenject;
 public enum LevelName
 {
     Level1,
-    Level2
+    Level2,
+    Level_CrateTest
 }
 public class Level : MonoBehaviour
 {

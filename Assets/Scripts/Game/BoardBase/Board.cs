@@ -175,7 +175,7 @@ public class Board : MonoBehaviour
         {
             if (neighbour != null && neighbour.HasItem())
             {
-                //todo:try execute by near match
+                neighbour.Item.TryExecuteByNearMatch(matchType);
             }
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -48,8 +49,15 @@ public class DiscoItem : SpecialItem
         var x = this.cell.X;
         var y = this.cell.Y;
 
+        
+
         var cell = (Cell[,])_board.Cells.Clone();
         cell.Shuffle();
+
+        /*var cellList = cell.Cast<Cell>().ToList();
+        var sameColorCells = cellList.Where(c => c.HasItem())
+            .Select(c => c.Item.GetItemType() == _matchType);
+        */
 
         for (int i = 0; i < _board.Rows; i++)
         {

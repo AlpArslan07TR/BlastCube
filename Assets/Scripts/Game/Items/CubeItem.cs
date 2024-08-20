@@ -9,7 +9,7 @@ public class CubeItem : Item
     [Inject] private ColorListSO _colorListSO;
     private MatchType _matchType;
 
-    public void Prepare(ItemBase itemBase, MatchType matchType, ItemType itemType)
+    public void PrepareCubeItem(ItemBase itemBase, MatchType matchType, ItemType itemType)
     {
         ItemType = itemType;
         _matchType = matchType;

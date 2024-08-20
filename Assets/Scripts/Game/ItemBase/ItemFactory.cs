@@ -40,6 +40,7 @@ public class ItemFactory : MonoBehaviour
                 item = CreateCubeItem(itemBase, MatchType.Purple, itemType);
                 break;
             case ItemType.Balloon:
+                item= CreateBalloonItem(itemBase, itemType);
                 break;
             case ItemType.GreenBalloon:
                 break;
@@ -54,6 +55,7 @@ public class ItemFactory : MonoBehaviour
             case ItemType.PurpleBalloon:
                 break;
             case ItemType.Crate:
+                item = CreateCrateItem(itemBase, layerCount,itemType);
                 break;
             case ItemType.Bomb:
                 item=CreateBombItem(itemBase, itemType);
@@ -72,6 +74,24 @@ public class ItemFactory : MonoBehaviour
         }
 
         return item; 
+    }
+
+    private Item CreateBalloonItem(ItemBase itemBase, ItemType itemType)
+    {
+        var balloonItem = itemBase.gameObject.AddComponent<BalloonItem>();
+        _diContainer.Inject(balloonItem);
+        balloonItem.PrepareBalloonItem(itemBase, itemType);
+
+        return balloonItem;
+    }
+
+    private Item CreateCrateItem(ItemBase itemBase, int layerCount, ItemType itemType)
+    {
+        var crateItem = itemBase.gameObject.AddComponent<CrateItem>();
+        _diContainer.Inject(crateItem);
+        crateItem.PrepareCrateItem(itemBase, layerCount, itemType);
+
+        return crateItem;
     }
 
     private Item CreateDiscoItem(ItemBase itemBase, ItemType itemType, ItemType itemTypeCliked)
@@ -106,7 +126,7 @@ public class ItemFactory : MonoBehaviour
         var cubeItem = itemBase.gameObject.AddComponent<CubeItem>();
         //_diContainer.InjectGameObject(cubeItem.gameObject);
         _diContainer.Inject(cubeItem);
-        cubeItem.Prepare(itemBase, matchType, itemType);
+        cubeItem.PrepareCubeItem(itemBase, matchType, itemType);
 
         return cubeItem;
     }

@@ -78,6 +78,8 @@ public class Item : MonoBehaviour
         return _fallAnimation.IsFalling;
     }
 
+    public virtual void TryExecuteByNearMatch(MatchType matchType) { }
+
     protected virtual void ChangeSprite(Sprite newSprite)
     {
         _spriteRenderer.sprite = newSprite;

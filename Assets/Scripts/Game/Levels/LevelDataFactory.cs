@@ -10,6 +10,7 @@ public static class LevelDataFactory
         {
             LevelName.Level1 => new Level_1(),
             LevelName.Level2 => new Level_2(),
+            LevelName.Level_CrateTest=>new Level_CrateTest(),
             _ => new Level_1()
         };
 
