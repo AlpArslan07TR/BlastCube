@@ -56,6 +56,7 @@ public class ItemFactory : MonoBehaviour
             case ItemType.Crate:
                 break;
             case ItemType.Bomb:
+                item=CreateBombItem(itemBase, itemType);
                 break;
             case ItemType.VerticalRocket:
                 item = CreateRocketItem(itemBase, itemType);
@@ -70,6 +71,15 @@ public class ItemFactory : MonoBehaviour
         }
 
         return item; //todo: return item
+    }
+
+    private Item CreateBombItem(ItemBase itemBase, ItemType itemType)
+    {
+        var bombItem=itemBase.gameObject.AddComponent<BombItem>();
+        _diContainer.Inject(bombItem);
+        bombItem.PrepareBombItem(itemBase,itemType);
+
+        return bombItem;
     }
 
     private Item CreateRocketItem(ItemBase itemBase, ItemType itemType)

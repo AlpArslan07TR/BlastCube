@@ -89,6 +89,10 @@ public class Board : MonoBehaviour
 
         return Cells[x, y];
     }
+    public bool IsInBoard(int x,int y)
+    {
+        return x < Rows && x >= 0 && y < Cols && y >= 0;
+    }
 
     public bool IsInBoardX(int x)
     {
