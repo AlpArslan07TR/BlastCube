@@ -33,6 +33,7 @@ public class Item : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private ParticleSystem _comboParticle;
     private Cell _cell;
+    public GameParticle HintParticle { get; private set; }
     private int _childSpiteOrder;
 
     public virtual MatchType GetMatchType()
@@ -76,6 +77,10 @@ public class Item : MonoBehaviour
     public bool IsFalling()
     {
         return _fallAnimation.IsFalling;
+    }
+    public bool IsParticlePlaying()
+    {
+        return HintParticle?.Particle.isPlaying ?? false;
     }
 
     public virtual void TryExecuteByNearMatch(MatchType matchType) { }

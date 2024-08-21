@@ -34,12 +34,32 @@ using Zenject;
                     var matchingCells = _matchFinder.FindMatches(_board.Cells[x, y], item.GetMatchType());
 
                     SetHintSprites(matchingCells.Count, x, y);
-                    //todo: hint particle
-                }
+                SetHintParticle(matchingCells.Count, item);
+            }
             }
         }
 
-        private void SetHintSprites(int matchCount, int x, int y)
+    private void SetHintParticle(int matchCount, Item item)
+    {
+        if (matchCount >= 2 && item.GetMatchType() == MatchType.SpecialType)
+        {
+            if (!item.IsParticlePlaying())
+            {
+                Debug.LogError("Play");
+                _particleService.Spawn("ComboParticle", item.transform.position);
+            }
+        }
+        else
+        {
+            if (item.IsParticlePlaying())
+            {
+                Debug.LogError("Stop");
+                _particleService.DeSpawn("ComboParticle", item.HintParticle);
+            }
+        }
+    }
+
+    private void SetHintSprites(int matchCount, int x, int y)
         {
             switch (matchCount)
             {

@@ -16,19 +16,34 @@ public class ComboService
                 Debug.LogWarning("Combo type not found");
                 break;
             case ComboType.RocketRocket:
-                var combo=new RocketRocketCombo(tappedCell, comboCells);
-                diContainer.Inject(combo);
-                combo.TryExecute();
+                var comboRR = new RocketRocketCombo(tappedCell, comboCells);
+                diContainer.Inject(comboRR);
+                comboRR.TryExecute();
                 break;
             case ComboType.BombRocket:
+                var comboBR = new BombRocketCombo(tappedCell, comboCells);
+                diContainer.Inject(comboBR);
+                comboBR.TryExecute();
                 break;
             case ComboType.BombBomb:
+                var comboBB = new BombBomb(tappedCell, comboCells);
+                diContainer.Inject(comboBB);
+                comboBB.TryExecute();
                 break;
             case ComboType.DiscoBomb:
+                var comboDB = new DiscoBomb(tappedCell, comboCells);
+                diContainer.Inject(comboDB);
+                comboDB.TryExecute();
                 break;
             case ComboType.DiscoRocket:
+                var comboDR = new DiscoRocket(tappedCell, comboCells);
+                diContainer.Inject(comboDR);
+                comboDR.TryExecute();
                 break;
             case ComboType.DiscoDisco:
+                var comboDD = new DiscoDisco(tappedCell, comboCells);
+                diContainer.Inject(comboDD);
+                comboDD.TryExecute();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -63,7 +63,7 @@ public class DiscoItem : SpecialItem
         {
             for (int j = 0; j < _board.Cols; j++)
             {
-                if (IsValid(cell[i, j]))
+                if (IsValid(cell[i, j],_matchType))
                 {
                     explodingCells.Add(cell[i, j]);
                 }
@@ -73,8 +73,8 @@ public class DiscoItem : SpecialItem
         return explodingCells;
     }
 
-    private bool IsValid(Cell cell)
+    private static bool IsValid(Cell cell,ItemType itemType)
     {
-        return cell.HasItem() && cell.Item.GetItemType() == _matchType;
+        return cell.HasItem() && cell.Item.GetItemType() == itemType;
     }
 }

@@ -11,11 +11,13 @@ namespace Game.Levels
             DefaultItemTypes = new[]
             {
                 ItemType.RedCube,
-                ItemType.BlueCube
+                ItemType.BlueCube,
+                ItemType.BlueCube,
+                ItemType.GreenCube
             };
 
-            RowCount = 5;
-            ColCount = 8;
+            RowCount = 6;
+            ColCount = 12;
 
             GridData = new ItemType[RowCount, ColCount];
 
@@ -34,8 +36,10 @@ namespace Game.Levels
         {
             _fillTypes = new Dictionary<ItemType, int>
             {
-                {ItemType.RedCube, 9},
-                {ItemType.BlueCube, 1}
+                
+                {ItemType.RedCube, 5},
+                {ItemType.BlueCube, 4},
+                {ItemType.GreenCube, 2}
             };
 
             return GetRandomTypeFromWeight(_fillTypes);
