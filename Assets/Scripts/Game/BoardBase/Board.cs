@@ -111,7 +111,8 @@ public class Board : MonoBehaviour
 
         if (cell.Item.GetMatchType() == MatchType.SpecialType)
         {
-            //todo:special type logic
+            ExplodeSpecialItem(cell);
+            return;
         }
 
         var matches= GetMatchingCells(cell);
@@ -123,6 +124,20 @@ public class Board : MonoBehaviour
         }
         ExploseMatchingCells(cell);
         TryCombineMatchingCellsToSpecialItem(cell,matches,clickedType);
+    }
+
+    private void ExplodeSpecialItem(Cell cell)
+    {
+        var cells=_matchFinder.FindMatches(cell,cell.Item.GetMatchType());
+
+        if (cells.Count == 1)
+        {
+            cell.Item.TryExecute();
+        }
+        else
+        {
+            //todo:combo
+        }
     }
 
     private void TryCombineMatchingCellsToSpecialItem(Cell cell, List<Cell> matches, ItemType clickedType)
